@@ -1,0 +1,19 @@
+
+
+
+       {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <div class="column lg-6 tab-12 form-field">
+            {{ form.name(class="u-fullwidth", placeholder="Your Name") }}
+        </div>
+        <div class="column lg-6 tab-12 form-field">
+            {{ form.email(class="u-fullwidth", placeholder="Your Email") }}
+        </div>
+        <div class="column lg-12 message form-field">
+            {{ form.message(class="u-fullwidth", placeholder="Your Message") }}
+        </div>
+        <div class="column lg-12">
+            {{ form.submit(class="btn btn--primary btn-wide btn--large u-fullwidth", value="Add Comment") }}
+        </div>
+
+

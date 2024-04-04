@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Blog Editor{% endblock %}
+{% block content %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+        <!-- # site-content
+        ================================================== -->
+        <div id="content" class="s-content s-content--blog">
+
+                <div class="row entry-wrap">
+                    <div class="column lg-12">
+                                    {% if filled == True %}
+                                    <div class="alert-box alert-box--success">
+                                        <p>Your Blog was uploaded Successfullyyy!!! </p>
+                                        <span class="alert-box__close"></span>
+                                    </div><!-- end success -->
+                                    {% endif %}
+
+
+                                    <h3>
+                                    Time for a new Blog
+                                    <span></span>
+                                    </h3>
+
+
+                                    <form class="entry__form" method="post" action={{url_for('add_blog')}} enctype="multipart/form-data">
+                                        <fieldset class="row">
+                                            {{ ckeditor.load() }}
+
+                                                   {{ form.hidden_tag() }}
+                                                    {{ form.csrf_token }}
+                                                    <div class="column lg-6 tab-12 form-field">
+                                                        {{ form.title(class="u-fullwidth", placeholder="The title of your Blog") }}
+                                                    </div>
+                                                    <div class="column lg-6 tab-12 form-field">
+                                                        {{ form.subtitle(class="u-fullwidth", placeholder="Subtitle") }}
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                        {{ form.categories(class="u-fullwidth", placeholder="Categories separated by commas") }}
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                        {{ form.tags(class="u-fullwidth", placeholder="Tags separated by commas") }}
+                                                    </div>
+                                                    <div class="column lg-6 tab-12 form-field">
+                                                        {{ form.author(class="u-fullwidth", placeholder="Author name") }}
+                                                    </div>
+                                                    <div class="column lg-6 tab-12 form-field">
+                                                        {{ form.date(class="u-fullwidth", placeholder="Enter a custom date") }}
+<!--                                                        <p style="color: #ACACAC; font-size: 1.5rem; text-align: right">If you leave it empty then it will save today's date.</p>-->
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                        {{form.cover.label}}
+                                                        {{ form.cover() }}
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                        {{form.body.label}}
+                                                        {{ form.body() }}
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                       <p> </p>
+                                                    </div>
+                                                    <div class="column lg-6 tab-12 message form-field">
+                                                        {{form.quote.label}}
+                                                        {{ form.quote(class="u-fullwidth", placeholder="Add any quote that you might like to highlight") }}
+                                                    </div>
+                                                    <div class="column lg-4 tab-12 message form-field">
+                                                        {{form.cite.label}}
+                                                        {{form.cite(class="u-fullwidth", placeholder="Cited from / Speaker's name") }}
+                                                    </div>
+
+                                                    <div class="column lg-2 tab-12 message form-field">
+                                                        {{form.after.label}}
+                                                        {{form.after(class="u-fullwidth") }}
+                                                    </div>
+
+
+                                                    <div class="column lg-12">
+                                                        {{ form.submit(class="btn btn--primary btn-wide btn--large u-fullwidth", value="Submit") }}
+                                                    </div>
+
+
+
+                                        </fieldset>
+                                    </form> <!-- end form -->
+                    </div>
+                </div> <!-- end entry-wrap -->
+        </section> <!-- end s-content -->
+                        {% endblock %}

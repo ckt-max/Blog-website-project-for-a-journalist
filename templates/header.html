@@ -1,0 +1,96 @@
+<!--       This page just has the header and navbar portion of the website. the styling and head is  in base.html-->
+        <!-- # site header
+        ================================================== -->
+        <header id="masthead" class="s-header">
+
+            <div class="s-header__branding">
+                <p class="site-title">
+                    <a href="{{url_for('home')}}" rel="home">the third eye.</a>
+                </p>
+            </div>
+
+            <div class="row s-header__navigation">
+
+                <nav class="s-header__nav-wrap">
+
+                    <h3 class="s-header__nav-heading">Navigate to</h3>
+
+                    <ul class="s-header__nav">
+                        <li class="{% block markhome %}{% endblock %}"><a href="{{url_for('home')}}" title="">Home</a></li>
+                        <li class="has-children {% block markcategory %}{% endblock %}">
+                            <a href="#0" title="" class="">Categories</a>
+                            <ul class="sub-menu">
+                                <li><a href="category.html">Design</a></li>
+                                <li><a href="category.html">Lifestyle</a></li>
+                                <li><a href="category.html">Inspiration</a></li>
+                                <li><a href="category.html">Work</a></li>
+                                <li><a href="category.html">Health</a></li>
+                                <li><a href="category.html">Photography</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-children {% block markexplore %}{% endblock %}">
+                            <a href="#0" title="" class="">Explore</a>
+                            <ul class="sub-menu">
+                                <li><a href="single-standard.html">Articles</a></li>
+                                <li><a href="single-video.html">Fotografia</a></li>
+                                <li><a href="single-audio.html">Podcast</a></li>
+                            </ul>
+                        </li>
+<!--                        <li><a href="styles.html" title="">Styles</a></li>-->
+                        <li class="{% block markabout %}{% endblock %}"><a href="about.html" title="">About</a></li>
+                        <li class="{% block markcontact %}{% endblock %}"><a href="{{url_for('contact')}}" title="">Contact</a></li>
+                    </ul> <!-- end s-header__nav -->
+
+                </nav> <!-- end s-header__nav-wrap -->
+
+            </div> <!-- end s-header__navigation -->
+
+            <div class="s-header__search">
+
+                <div class="s-header__search-inner">
+                    <div class="row">
+
+                        <form role="search" method="post" class="s-header__search-form" action="{{url_for('searchresults')}}">
+                            <label>
+                                <span class="u-screen-reader-text">Search for:</span>
+                                <input type="search" class="s-header__search-field" placeholder="Search for..." value="" name="s" title="Search for:" autocomplete="on">
+                            </label>
+                            <input type="submit" class="s-header__search-submit" value="Search">
+                        </form>
+
+                        <a href="#0" title="Close Search" class="s-header__search-close">Close</a>
+
+                    </div> <!-- end row -->
+                </div> <!-- s-header__search-inner -->
+
+            </div> <!-- end s-header__search -->
+
+            <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+            <a class="s-header__search-trigger" href="#">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z"></path>
+                </svg>
+            </a>
+
+        </header> <!-- end s-header -->
+
+{% block links %}
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/aos.css">
+  <link rel="stylesheet" href="static/css/style.css">
+{% endblock %}
+
+<!---->
+
+                        {% for i in range(20) %}
+                        <article class="brick entry" data-animate-el>
+
+                            <div class="entry__thumb">
+                                <a href="single-standard.html" class="thumb-link">
+                                    <img src="static/images/thumbs/masonry/statue-600.jpg"
+                                        srcset="static/images/thumbs/masonry/statue-600.jpg 1x, images/thumbs/masonry/statue-1200.jpg 2x" alt=""
+                                        >
+                                </a>
+                            </div> <!-- end entry__thumb -->
+                        </article>
+                        {% endfor %}

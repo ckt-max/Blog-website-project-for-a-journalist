@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+{% block markcontact %} current-menu-item{% endblock %}
+    {%  block content %}
+
+        <!-- # site-content
+        ================================================== -->
+            {% if filled == True %}
+            <div class="alert-box alert-box--success">
+                <p>Success!!!. Your message was sent to the author</p>
+                <span class="alert-box__close"></span>
+            </div><!-- end success -->
+            {% endif %}
+        <div id="content" class="s-content s-content--page">
+
+                <div class="row entry-wrap">
+                    <div class="column lg-12">
+
+                        <article class="entry">
+
+                            <header class="entry__header entry__header--narrow">
+    
+                                <h1 class="entry__title">
+                                    Say Hello.
+                                </h1>
+    
+                            </header>
+
+                            <div class="entry__media">
+                                <figure class="featured-image">
+                                    <img src="static/images/thumbs/contact/contact-1200.jpg"
+                                      srcset="static/images/thumbs/contact/contact-2400.jpg 2400w,
+                                              static/images/thumbs/contact/contact-1200.jpg 1200w,
+                                              static/images/thumbs/contact/contact-600.jpg 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="Picture of a phone">
+                                </figure>
+                            </div>
+
+                            <div class="content-primary">
+
+                                <div class="entry__content">
+        
+                                    <p class="lead">
+                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
+                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
+                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
+                                    magna amet magna cupidatat qui labore cillum cillum cupidatat fugiat nostrud.</p> 
+
+                                    <p>
+                                    Eligendi quam at quis. Sit vel neque quam consequuntur expedita quisquam. Incidunt quae 
+                                    qui error. Rerum non facere mollitia ut magnam laboriosam. Quisquam neque quia ex eligendi 
+                                    repellat illum quibusdam aut. Architecto quam consequuntur totam ratione reprehenderit est 
+                                    praesentium. 
+                                    </p>
+
+                                    <div class="row block-large-1-2 block-tab-whole entry__blocks">
+                                        <div class="column">
+                                            <h4>Where to Find Me</h4>
+                                            <p>
+                                            Indian Institute of Mass Communication<br>
+                                            Dhenkanal, Odisha <br>
+                                            759001
+                                            </p>
+                                        </div>
+        
+                                        <div class="column">
+                                            <h4>Contact Info</h4>
+                                            <p>
+                                            komsin9@gmail.com<br>
+                                            </p> 
+                                        </div>
+                                    </div>
+
+                                    <h4>Feel Free to Say Hi</h4>
+
+                                    <form class="entry__form" method="post" action={{url_for('contact')}}>
+                                        <fieldset class="row">
+                                            {% include 'contact_form.html' %}
+
+                                        </fieldset>
+                                    </form> <!-- end form -->
+
+                            </div> <!-- end content-primary -->
+
+                        </article> <!-- end entry -->
+
+                    </div>
+                </div> <!-- end entry-wrap -->
+        </section> <!-- end s-content -->
+
+        {% endblock %}

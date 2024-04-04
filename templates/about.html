@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+{% block markabout %} current-menu-item{% endblock %}
+    {%  block content %}
+        <!-- # site-content
+        ================================================== -->
+        <div id="content" class="s-content s-content--page">
+
+                <div class="row entry-wrap">
+                    <div class="column lg-12">
+
+                        <article class="entry">
+
+                            <header class="entry__header entry__header--narrow">
+    
+                                <h1 class="entry__title">
+                                    Welcome to The Third Eye
+                                </h1>
+    
+                            </header>
+
+                            <div class="entry__media">
+                                <figure class="featured-image">
+                                    <img src="static/images/thumbs/about/IMG_20230907_191332.jpg" alt="">
+                                </figure>
+                            </div>
+
+                            <div class="content-primary">
+
+                                <div class="entry__content">
+        
+<!--                                    <p class="lead">-->
+<!--                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor -->
+<!--                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat -->
+<!--                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco -->
+<!--                                    magna amet magna cupidatat qui labore cillum cillum cupidatat fugiat nostrud.</p> -->
+
+<!--                                    <div class="row block-lg-one-half block-tab-whole">-->
+                                     <div>
+                                        <div class="column">
+                                            <p>Hey there, curious minds!<br>
+                                                Welcome to The Third Eye<br>
+                                                I'm Komal Singh, a budding journalist from the Indian Institute of Mass Communication with a head full of stories and a heart that thrives on capturing the essence of life. This space, The Third Eye, is my creative canvas. Here, I weave together words, visuals, and sounds to explore the depths of life, reality, and everything in between.</p>
+                                                <br><br>
+                                                <p>
+                                                What can you expect to find on The Third Eye?<br>
+                                                Blogs! Dive into my thoughts and experiences as I tackle themes both profound and playful.<br>
+                                                Photography! Witness the world through my lens, where everyday moments transform into stories waiting to be told.<br>
+                                                Podcasts! Tune in to my unfiltered conversations about life, reality, and the questions that keep us up at night.</p>
+                                                <br><br>
+                                                <p></p>
+
+                                                <p>
+                                                The Third Eye is a platform for me to share my unique perspective and connect with kindred spirits. I believe in the power of stories to bridge divides, spark curiosity, and ignite change. So, grab a cup of chai, settle in, and let's embark on this exploration together! &#9749;<br>
+                                                Stay tuned for fresh content, insightful explorations, and a whole lot of creative expression as this is just the beginning!</p>
+                                                <br><br>
+                                        </div>
+                                    </div>
+
+                            </div> <!-- end content-primary -->
+
+                        </article> <!-- end entry -->
+                                    <h3>
+                                    Send a message to the author.
+                                    <span></span>
+                                    </h3>
+                                    <p>Your email address will not be published.</p>
+
+                                    <form class="entry__form" method="post" action={{url_for('about')}}>
+                                        <fieldset class="row">
+
+                                            {%  include 'contact_form.html' %}
+
+                                        </fieldset>
+                                    </form> <!-- end form -->
+                    </div>
+                </div> <!-- end entry-wrap -->
+
+        </section> <!-- end s-content -->
+
+    {% endblock %}

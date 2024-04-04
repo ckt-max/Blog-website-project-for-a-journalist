@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Photo uploader{% endblock %}
+{% block content %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+        <!-- # site-content
+        ================================================== -->
+        <div id="content" class="s-content s-content--blog">
+
+                <div class="row entry-wrap">
+                    <div class="column lg-12">
+                                    {% if filled == True %}
+                                    <div class="alert-box alert-box--success">
+                                        <p>Your Photo was uploaded Successfullyyy!!! </p>
+                                        <span class="alert-box__close"></span>
+                                    </div><!-- end success -->
+                                    {% endif %}
+
+
+                                    <h3>
+                                    Upload a new click
+                                    <span></span>
+                                    </h3>
+
+
+                                    <form class="entry__form" method="post" action={{url_for('add_photo')}} enctype="multipart/form-data">
+                                        <fieldset class="row">
+
+                                                   {{ form.hidden_tag() }}
+                                                    {{ form.csrf_token }}
+
+
+                                                    <div class="column lg-12 message form-field">
+                                                        {{ form.photo.label }}
+                                                        {{ form.photo() }}
+                                                    </div>
+                                                    <div class="column lg-12 message form-field">
+                                                        {{ form.caption(class="u-fullwidth", placeholder="Write your Caption here") }}
+                                                    </div>
+                                                    <div class="column lg-12">
+                                                        {{ form.submit(class="btn btn--primary btn-wide btn--large u-fullwidth", value="Submit") }}
+                                                    </div>
+
+
+
+                                        </fieldset>
+                                    </form> <!-- end form -->
+                    </div>
+                </div> <!-- end entry-wrap -->
+        </section> <!-- end s-content -->
+                        {% endblock %}
