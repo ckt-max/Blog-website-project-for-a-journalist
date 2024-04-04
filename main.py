@@ -372,19 +372,19 @@ def logout():
     logout_user()
     return redirect('/')
 
-# # register a new master
-# @app.route('/register', methods = ['GET', 'POST'])
-# def register():
-#
-#     if request.method == 'POST':
-#         new_user = Master(
-#             id = request.form.get('id'),
-#             password = werkzeug.security.generate_password_hash(request.form.get('password'), method='pbkdf2:sha256', salt_length=8))
-#         db.session.add(new_user)
-#         db.session.commit()
-#         return redirect("/")
-#
-#     return render_template("register.html")
+# register a new master
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
+
+    if request.method == 'POST':
+        new_user = Master(
+            id = request.form.get('id'),
+            password = werkzeug.security.generate_password_hash(request.form.get('password'), method='pbkdf2:sha256', salt_length=8))
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect("/")
+
+    return render_template("register.html")
 
 
 @app.route("/new-post", methods=["GET", "POST"])
