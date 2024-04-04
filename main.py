@@ -72,7 +72,7 @@ class Podcast(db.Model):
 
 class Photo(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    caption: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
+    caption: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     img_64: Mapped[str] = mapped_column(String, nullable=True)
     # categories: Mapped[str] = mapped_column(String(250), nullable=False)
 class Master(UserMixin, db.Model):
