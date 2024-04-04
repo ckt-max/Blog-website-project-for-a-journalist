@@ -28,7 +28,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'esryrty+9s65rtert'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 # initializing ckeditor
 app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
@@ -37,7 +37,7 @@ ckeditor = CKEditor(app)
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'sqlite:///project.db')
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -148,9 +148,9 @@ def mailer(name, email, message):
     # sending email
     print('Composing Email....')
 
-    email_sender = 'testmail.ckt01@gmail.com'
-    email_password = 'qmvr bmrb fkbd ebkb'
-    email_receiver = 'cktdesigns98@gmail.com'
+    email_sender = os.environ.get('SENDER_MAIL')
+    email_password = os.environ.get('SENDER_PASS')
+    email_receiver = os.environ.get('RECIEVER_MAIL')
 
     content = f'''Hi there's a message from your reader "{name}": 
 
@@ -481,4 +481,4 @@ def add_podcast():
     return render_template("add_podcast.html", form=form, new=True, filled=False, user=current_user)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5003)
+    app.run(debug=False)
