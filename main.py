@@ -481,4 +481,4 @@ def add_podcast():
     return render_template("add_podcast.html", form=form, new=True, filled=False, user=current_user)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
