@@ -78,7 +78,7 @@
 <!--                        </li>-->
 
                         <li class="{% block markabout %}{% endblock %}"><a href={{url_for('about')}} title="">About</a></li>
-                        <li class="{% block markcontact %}{% endblock %}"><a href="{{url_for('contact')}}" title="">Contact</a></li>
+<!--                        <li class="{% block markcontact %}{% endblock %}"><a href="{{url_for('contact')}}" title="">Contact</a></li>-->
                         {% if current_user.is_authenticated %}
                         <l1><a href="{{url_for('logout')}}" title="">Master Log out</a></li></l1>
                         {% endif %}
