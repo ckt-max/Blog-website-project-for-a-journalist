@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
+from flask_compress import Compress
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy, session
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, session
@@ -28,6 +29,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 app = Flask(__name__)
+Compress(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 # initializing ckeditor
