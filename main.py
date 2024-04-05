@@ -19,6 +19,7 @@ from datetime import date
 import base64
 import email_validator
 from math import ceil
+from utils import docache
 
 # for emailing
 import os
@@ -184,6 +185,7 @@ def base64_convert(image_data):
 # --------APP STARTS
 @app.route('/', defaults={'page_no': 1})
 @app.route('/<int:page_no>')
+@docache()
 def home(page_no):
     # Determine the offset based on the page number
     offset = (page_no - 1) * 8
@@ -207,6 +209,7 @@ def home(page_no):
 
 # -------------ARTICLES/BLOGS----------------------
 @app.route('/blog/<int:post_id>', methods = ["GET","POST"])
+@docache()
 def blog_post(post_id):
 
     requested_post = db.session.execute(db.select(BlogPost).where(BlogPost.id == post_id)).scalar()
@@ -230,6 +233,7 @@ def blog_post(post_id):
 
 @app.route('/blog/all/', defaults={'page_no': 1})
 @app.route('/blog/all/<int:page_no>')
+@docache()
 def all_blogs(page_no):
     # Determine the offset based on the page number
     offset = (page_no - 1) * 8
@@ -246,6 +250,7 @@ def all_blogs(page_no):
 
 @app.route('/blog/<category>', defaults={'page_no': 1})
 @app.route('/blog/<category>/<page_no>')
+@docache()
 def blogs_by_category(category, page_no):
     # Determine the offset based on the page number
     offset = (page_no - 1) * 8
@@ -264,6 +269,7 @@ def blogs_by_category(category, page_no):
 #-----PHOTO-GALLERY-------------------
 @app.route('/fotografia/', defaults={'page_no': 1},methods=['GET','POST'])
 @app.route('/fotografia/<int:page_no>',methods=['GET','POST'])
+@docache()
 
 def photo_gallery(page_no):
 
@@ -294,6 +300,8 @@ def photo_gallery(page_no):
 
 # --------- PODCASTS --------------
 @app.route('/podcast', methods = ["GET","POST"])
+@docache()
+
 def podcast():
     form = ContactForm()
     if form.validate_on_submit():
@@ -308,6 +316,8 @@ def podcast():
 
 @app.route('/podcast/all/', defaults={'page_no': 1})
 @app.route('/podcast/all/<int:page_no>')
+@docache()
+
 def all_pods(page_no):
     posts = db.session.execute( db.select(Podcast).where(and_(Podcast.id <= 8 * page_no, Podcast.id >= 8 * page_no - 7)).order_by(Podcast.id.desc())).scalars()
     # latest post for hero
@@ -324,6 +334,8 @@ def all_pods(page_no):
 
 
 @app.route('/about', methods=["GET","POST"])
+@docache()
+
 def about():
     form = ContactForm()
     if form.validate_on_submit():
@@ -337,6 +349,8 @@ def about():
 
     return render_template("about.html", form=form, filled=False)
 @app.route('/contact', methods=["GET","POST"])
+@docache()
+
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
@@ -355,6 +369,8 @@ def contact():
 
 # login the user and start the session
 @app.route('/shkljdfhoahsohfwoie7r77823729slkdl----master--login----kueihnkjskd275672981928', methods=["GET", "POST"])
+@docache()
+
 def master_login():
     error = None
     if request.method == "POST":
@@ -370,6 +386,8 @@ def master_login():
     return render_template("master_login.html", error=error)
 
 @app.route('/logout')
+@docache()
+
 def logout():
     logout_user()
     return redirect('/')
@@ -391,6 +409,8 @@ def logout():
 
 @app.route("/new-post", methods=["GET", "POST"])
 @login_required
+@docache()
+
 def add_blog():
     form = BlogForm()
     if form.validate_on_submit():
@@ -420,6 +440,8 @@ def add_blog():
 
 @app.route('/blog/delete/<int:post_id>')
 @login_required
+@docache()
+
 def delete_post(post_id):
     post = db.session.execute(db.select(BlogPost).where(BlogPost.id==post_id)).scalar()
     db.session.delete(post)
@@ -428,6 +450,8 @@ def delete_post(post_id):
 
 @app.route('/fotographia/delete/<int:post_id>')
 @login_required
+@docache()
+
 def delete_photo(post_id):
     post = db.session.execute(db.select(Photo).where(Photo.id==post_id)).scalar()
     db.session.delete(post)
@@ -436,6 +460,8 @@ def delete_photo(post_id):
 
 @app.route('/podcast/delete/<int:post_id>')
 @login_required
+@docache()
+
 def delete_pod(post_id):
     post = db.session.execute(db.select(BlogPost).where(Podcast.id==post_id)).scalar()
     db.session.delete(post)
@@ -444,6 +470,8 @@ def delete_pod(post_id):
 
 @app.route("/new-photo", methods=["GET", "POST"])
 @login_required
+@docache()
+
 def add_photo():
     form = PhotoForm()
     if form.validate_on_submit():
@@ -464,6 +492,8 @@ def add_photo():
 # check this
 @app.route("/new-podcast", methods=["GET", "POST"])
 @login_required
+@docache()
+
 def add_podcast():
     form = PodcastForm()
     if form.validate_on_submit():
