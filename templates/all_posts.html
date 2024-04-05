@@ -9,23 +9,26 @@
         ================================================== -->
         <div class="s-content s-content--blog column lg-12" style="padding-top:10rem;">
 
-            <h6 style="margin-top:0px;">Filter by category</h6>
+            <h6 style="margin-top:0px; text-align: center;">Filter by category</h6>
         </div>
+            <div class="row pagination ">
+                    <div class="column lg-12" >
+                        <nav class="pgn">
+                            <ul>
+                            <li><a class="btn {% if category=='National' %}btn--stroke{% endif %} " href= {{url_for('blogs_by_category',category="National",page_no=1)}} >National</a></li>
+                            <li>    <a class="btn {% if category=='International' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="International",page_no=1)}}  >International</a></li>
+                            <li>    <a class="btn {% if category=='State' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="State",page_no=1)}}  >State</a></li>
+                            <li>    <a class="btn {% if category=='Economy' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="Economy",page_no=1)}}  >Economy</a></li>
+                            <li>    <a class="btn {% if category=='Health & Lifestyle' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="Health & Lifestyle",page_no=1)}}  >Health/Lifestyle</a></li>
+                            <li>    <a class="btn {% if category=='Technology' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="Sports",page_no=1)}} >Technology</a></li>
 
-        <div id="content" style="display: flex">
-            <div class="lg-2 tab-12" >
-
-                <a class="btn {% if category=='National' %}btn--stroke{% endif %} u-fullwidth" href= {{url_for('blogs_by_category',category="National",page_no=1)}} style="margin: 5px">National</a>
-                <a class="btn {% if category=='International' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="International",page_no=1)}}  style="margin: 5px">International</a>
-                <a class="btn {% if category=='State' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="State",page_no=1)}}  style="margin: 5px">State</a>
-                <a class="btn {% if category=='Economy' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="Economy",page_no=1)}}  style="margin: 5px">Economy</a>
-                <a class="btn {% if category=='Health & Lifestyle' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="Health & Lifestyle",page_no=1)}}  style="margin: 5px">Health/Lifestyle</a>
-                <a class="btn {% if category=='Technology' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="Sports",page_no=1)}} style="margin: 5px">Technology</a>
-
-                <a class="btn {% if category=='Sports' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="Sports",page_no=1)}} style="margin: 5px">Sports</a>
-                <a class="btn {% if category=='Miscellaneous' %}btn--stroke{% endif %} u-fullwidth" href={{url_for('blogs_by_category',category="Miscellaneous",page_no=1)}}  style="margin: 5px">Miscellaneous</a>
+                            <li>    <a class="btn {% if category=='Sports' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="Sports",page_no=1)}} >Sports</a></li>
+                            <li>    <a class="btn {% if category=='Miscellaneous' %}btn--stroke{% endif %} " href={{url_for('blogs_by_category',category="Miscellaneous",page_no=1)}}  >Miscellaneous</a></li>
+                            </ul>
+                        </nav>
+                    </div>
             </div>
-            <div class="lg-10 tab-12">
+
             {% for blog in blogs %}
             <a  href={{url_for('blog_post', post_id=blog.id)}}>
             <fieldset class="row"  style=" background-color: #eef0f2; padding-top: 30px">
