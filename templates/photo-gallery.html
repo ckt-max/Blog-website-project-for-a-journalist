@@ -14,67 +14,68 @@
         <span class="alert-box__close"></span>
     </div><!-- end success -->
     {% endif %}
-    <h4>An assortment of my favourite clicks over the years</h4>
+<!--    <h4>An assortment of my favourite clicks over the years</h4>-->
 </div>
 
 
 <!--                CAROUSEL -->
-            <div id="bricks" class="bricks" style="padding: 0rem;">
-                <div class="masonry">
 
-                    <div class="bricks-wrapper ss-animated" data-animate-block="" style="position: relative; height: 2430.31px;">
+<!-- Slideshow container -->
+<div style="background-color: black;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="slideshow-container">
+        {% for blog in blogs %}
+      <!-- Full-width images with number and caption text -->
+      <div class="mySlides fade">
+        <img src="data:image/jpeg;base64,{{ blog.img_64 }}" style="width:100%" alt="photo">
+          <div class="captext-container"><div class="captext">{{blog.caption}}</div></div>
 
-                        <div class="grid-sizer"></div>
-                        {% for blog in blogs %}
-                        <article class="brick entry " data-animate-el="" style="position: absolute; left: 0%; top: 0px; --transition-delay: 0ms; width: 69rem;">
-                            <div class="gallery__thumb">
-                                <a href="data:image/jpeg;base64,{{ blog.img_64 }}" class="thumb-link">
-                                    <img src="data:image/jpeg;base64,{{ blog.img_64 }}" alt="{{blog.title}}">
-                                </a>
-                            </div> <!-- end entry__thumb -->
+      </div>
+        {% endfor %}
 
-                            <div class="entry__text">
-<!--                                <div class="entry__header">-->
-
-<!--                                    <h1 class="entry__title">Just a Normal Simple Blog Post.</h1>-->
-<!--                                 </div>-->
-                                <div class="entry__excerpt">
-                                    <p>{{blog.caption}}
-                                        {% if current_user.is_authenticated %}
-                    <a href={{url_for('delete_photo',post_id=blog.id)}}>✘ Delete</a>
-                    {% endif %}
-                                    </p>
-                                </div>
-                            </div> <!-- end entry__text -->
-
-                        </article> <!-- end article -->
-                        {% endfor %}
-                    </div> <!-- end bricks-wrapper -->
-
-                </div> <!-- end masonry-->
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+<br>
 
 
-                <!-- pagination -->
-                <div class="row pagination ">
+<!-- The dots/circles -->
+   <div style="text-align:center">
+       {% for blog in blogs %}
+          <span class="dot" onclick="currentSlide(1)"></span>
+       {% endfor %}
+   </div>
+    <br><br>
+</div>
+<br><br>
+
+<div class="row pagination ">
                     <div class="column lg-12">
+
                         <nav class="pgn">
+
                             <ul>
+
                                 {% if page_no > 1 %}
                                 <li>
-                                    <a class="pgn__prev" href={{url_for('photo_gallery',page_no=page_no-1)}}>
+                                    <a class="pgn__prev" href={{url_for('all_blogs',page_no=page_no-1)}}>
                                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.25 6.75L4.75 12L10.25 17.25"></path>
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 12H5"></path>
                                         </svg>
                                     </a>
                                 </li>
-                                <li><a class="pgn__num" href={{url_for('photo_gallery',page_no=page_no-1)}}>{{page_no-1}}</a></li>
+                                <li><a class="pgn__num" href={{url_for('all_blogs',page_no=page_no-1)}}>{{page_no-1}}</a></li>
                                 {% endif %}
                                 <li><span class="pgn__num current">{{page_no}}</li>
                                 {% if last_page_flag == False %}
-                                <li><a class="pgn__num" href={{url_for('photo_gallery',page_no=page_no+1)}}>{{page_no+1}}</a></li>
+                                <li><a class="pgn__num" href={{url_for('all_blogs',page_no=page_no+1)}}>{{page_no+1}}</a></li>
                                 <li>
-                                    <a class="pgn__next" href={{url_for('photo_gallery',page_no=page_no+1)}}>
+                                    <a class="pgn__next" href={{url_for('all_blogs',page_no=page_no+1)}}>
                                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"></path>
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12H4.75"></path>
@@ -83,10 +84,15 @@
                                 </li>
                                 {% endif %}
                             </ul>
+                            {% if last_page_flag == False %}
+                            <p style="font-size:12.5px; font-style: italic;">Use navigation to see more </p>
+                            {% endif %}
                         </nav> <!-- end pgn -->
                     </div> <!-- end column -->
                 </div> <!-- end pagination -->
 
+
+        <div id="content" class="s-content s-content--blog">
 
                 <div class="row entry-wrap">
                     <div class="column lg-12">
@@ -96,15 +102,19 @@
                                     </h3>
                                     <p>Your email address will not be published.</p>
 
-                                    <form class="entry__form" method="post" action={{url_for('photo_gallery')}}>
+                                    <form class="entry__form" method="post" action={{url_for('photo_gallery', page_no = page_no)}}>
                                         <fieldset class="row">
 
                                             {%  include 'contact_form.html' %}
 
                                         </fieldset>
                                     </form> <!-- end form -->
-                    </div>
 
-                </div>
-            </div>
+
+
+                    </div>
+                </div> <!-- end entry-wrap -->
+        </section> <!-- end s-content -->
+
+
 {% endblock %}
