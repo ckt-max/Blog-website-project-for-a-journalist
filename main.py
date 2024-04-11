@@ -30,7 +30,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 app = Flask(__name__)
-Compress(app)
+# Compress(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 # initializing ckeditor
@@ -448,7 +448,7 @@ def delete_post(post_id):
     db.session.commit()
     return redirect('/blog/all')
 
-@app.route('/fotographia/delete/<int:post_id>')
+@app.route('/fotografia/delete/<int:post_id>')
 @login_required
 @docache()
 
@@ -456,7 +456,7 @@ def delete_photo(post_id):
     post = db.session.execute(db.select(Photo).where(Photo.id==post_id)).scalar()
     db.session.delete(post)
     db.session.commit()
-    return redirect('/')
+    return redirect('/fotografia')
 
 @app.route('/podcast/delete/<int:post_id>')
 @login_required
@@ -466,7 +466,7 @@ def delete_pod(post_id):
     post = db.session.execute(db.select(BlogPost).where(Podcast.id==post_id)).scalar()
     db.session.delete(post)
     db.session.commit()
-    return redirect('/')
+    return redirect('/podcasts')
 
 @app.route("/new-photo", methods=["GET", "POST"])
 @login_required
