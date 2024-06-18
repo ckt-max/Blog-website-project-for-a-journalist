@@ -20,9 +20,9 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
 <!--WEB MANIFEST-->
     <link rel="manifest" href="{{url_for('static',filename = 'site.webmanifest')}}">
     {% block add_links %} {% endblock %}
@@ -50,7 +50,7 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                    <a href="{{url_for('home')}}" rel="home">the third eye.</a>
+                    <a href="{{url_for('home')}}" rel="home"><img src="/static/images/the100x100.png"></a>
                 </p>
             </div>
 
